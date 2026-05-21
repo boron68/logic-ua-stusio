@@ -37,6 +37,65 @@
             overflow: hidden;
         }
 
+        /* Оверлей прев'ю ПРЕМ'ЄРИ */
+        .thumbnail-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.2); /* Майже прозорий, щоб було видно світлий фон */
+            backdrop-filter: blur(10px); /* Легке розмиття */
+            z-index: 100;
+            transition: opacity 1s ease-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .thumbnail-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .thumbnail-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .premier-thumbnail-media {
+            max-width: 55%; 
+            max-height: 45vh;
+            object-fit: contain;
+            border: 6px solid #ffcc00;
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(255, 204, 0, 0.5); 
+            margin-bottom: 20px;
+        }
+
+        .premier-text {
+            color: #ffcc00;
+            font-size: 85px; 
+            font-family: 'Arial Black', sans-serif;
+            text-transform: uppercase;
+            text-shadow: 0 8px 15px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 204, 0, 0.4);
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+
+        .premier-details {
+            color: #ffffff;
+            font-size: 35px;
+            font-family: 'Arial Black', sans-serif;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
+        }
+
         .slide-deck {
             width: 100%;
             height: 100%;
@@ -140,7 +199,16 @@
 <body>
 
 <div class="brawl-talk-stage">
-    <div class="studio-header" id="header">Logic UA Studio Presents</div>
+    
+    <div class="thumbnail-overlay" id="thumbnail-overlay">
+        <div class="thumbnail-content">
+            <img class="premier-thumbnail-media" src="photo_2026-05-21_23-15-23.jpg" alt="Прев'ю ПРЕМ'ЄРИ">
+            <div class="premier-text">ПРЕМ'ЄРА</div>
+            <div class="premier-details">23 травня о 16:00 за Києвом</div>
+        </div>
+    </div>
+
+    <div class="studio-header" id="header" style="opacity: 0;">Logic UA Studio Presents</div>
 
     <div class="slide-deck">
         <div class="slide active" data-sub="Привіт усім! Ми раді розповісти вам про неймовірні новинки, які чекають на вас у грі.">
@@ -204,7 +272,7 @@
         </div>
     </div>
 
-    <div class="subtitles-container" id="sub-container">
+    <div class="subtitles-container" id="sub-container" style="opacity: 0;">
         <div class="subtitle-text" id="sub-box">Привіт усім! Ми раді розповісти вам про неймовірні новинки, які чекають на вас у грі.</div>
     </div>
 </div>
@@ -214,6 +282,7 @@
     const subBox = document.getElementById('sub-box');
     const subContainer = document.getElementById('sub-container');
     const header = document.getElementById('header');
+    const thumbnailOverlay = document.getElementById('thumbnail-overlay');
     
     let currentIdx = 0;
     const slideDuration = 5500; 
@@ -248,8 +317,38 @@
         }
     }
 
-    // Запускаємо таймер
-    intervalId = setInterval(nextSlide, slideDuration);
+    // Функція для старту відтворення
+    function startVideo() {
+        // Ховаємо прев'ю
+        thumbnailOverlay.classList.add('hidden');
+        
+        // Показуємо інтерфейс для першого слайду
+        subContainer.style.opacity = '1';
+        header.style.opacity = '1';
+
+        // Запускаємо таймер перемикання слайдів
+        intervalId = setInterval(nextSlide, slideDuration);
+    }
+
+    // Встановлюємо дату релізу: 23 травня 2026 року, 16:00 за київським часом (UTC+3)
+    const targetDate = new Date('2026-05-23T16:00:00+03:00').getTime();
+
+    // Перевірка часу при завантаженні сторінки
+    function checkTime() {
+        const now = new Date().getTime();
+        const timeRemaining = targetDate - now;
+
+        if (timeRemaining <= 0) {
+            // Якщо час прем'єри вже настав, запускаємо відразу
+            startVideo();
+        } else {
+            // Якщо ще зарано, чекаємо залишок часу
+            setTimeout(startVideo, timeRemaining);
+        }
+    }
+
+    // Виклик перевірки
+    checkTime();
 </script>
 
 </body>
