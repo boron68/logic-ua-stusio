@@ -37,20 +37,21 @@
             overflow: hidden;
         }
 
-        /* --- ОНОВЛЕНО: Новий компактний оверлей прев'ю ПРЕМ'ЄРИ --- */
+        /* --- ФІКС: Напівпрозорий фон з розмиттям --- */
         .thumbnail-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.95); /* Глибокий чорний, щоб приховати все */
-            z-index: 100; /* Перекриває все */
-            transition: opacity 1s ease-out; /* Плавне зникнення */
+            background-color: rgba(0, 0, 0, 0.75); /* Напівпрозорий чорний замість глухого */
+            backdrop-filter: blur(8px); /* Ефект розмиття заднього фону */
+            z-index: 100;
+            transition: opacity 1s ease-out;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column; /* Вертикальне розташування для контенту */
+            flex-direction: column;
         }
 
         .thumbnail-overlay.hidden {
@@ -64,37 +65,37 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            max-width: 70%; /* Загальна ширина контенту прев'ю */
+            width: 100%;
         }
 
         .premier-thumbnail-media {
-            max-width: 100%; /* Заповнює свій контейнер */
-            max-height: 60vh; /* Обмеження висоти, щоб залишити місце для тексту */
-            object-fit: contain; /* Зберігає пропорції */
-            border: 8px solid #ffcc00; /* Товстіша рамка для ефекту */
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(255, 204, 0, 0.6); /* Жовте світіння */
-            background-color: rgba(0, 0, 0, 0.4);
-            margin-bottom: 25px; /* Відступ від тексту */
+            max-width: 55%; /* Компактний розмір картинки */
+            max-height: 45vh;
+            object-fit: contain;
+            border: 6px solid #ffcc00;
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(255, 204, 0, 0.5); /* Широке жовте світіння */
+            margin-bottom: 20px;
         }
 
         .premier-text {
-            color: #ffcc00; /* Яскраво-жовтий */
-            font-size: 80px; /* Гігантський текст прем'єри */
+            color: #ffcc00;
+            font-size: 85px; /* Гігантський текст */
             font-family: 'Arial Black', sans-serif;
             text-transform: uppercase;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.9);
-            letter-spacing: 5px;
-            margin-bottom: 10px;
+            text-shadow: 0 8px 15px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 204, 0, 0.4);
+            letter-spacing: 4px;
+            margin-bottom: 5px;
+            line-height: 1;
         }
 
         .premier-details {
-            color: #fff; /* Білий для деталей */
-            font-size: 30px;
-            font-weight: bold;
-            text-shadow: 2px 2px 5px #000;
+            color: #ffffff;
+            font-size: 35px;
+            font-family: 'Arial Black', sans-serif;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
         }
-        /* --- КІНЕЦЬ ОНОВЛЕННЯ --- */
+        /* --- КІНЕЦЬ ФІКСУ --- */
 
         .slide-deck {
             width: 100%;
@@ -122,7 +123,6 @@
             visibility: visible;
         }
 
-        /* Обмежена висота картинок */
         .slide-media {
             max-width: 80%;
             max-height: 58%;
@@ -133,7 +133,6 @@
             background-color: rgba(0,0,0,0.4);
         }
 
-        /* Назва студії */
         .studio-header {
             position: absolute;
             top: 15px;
@@ -152,7 +151,6 @@
             transition: opacity 0.3s;
         }
 
-        /* Компактні субтитри внизу */
         .subtitles-container {
             position: absolute;
             bottom: 20px;
@@ -178,7 +176,6 @@
             text-shadow: 2px 2px 3px #000;
         }
 
-        /* Стилі для фінальних сцен на весь екран */
         .end-screen {
             background: linear-gradient(135deg, #0f172a 0%, #3b0764 100%);
             align-items: center;
@@ -199,72 +196,60 @@
 <body>
 
 <div class="brawl-talk-stage">
+    
     <div class="thumbnail-overlay" id="thumbnail-overlay">
         <div class="thumbnail-content">
             <img class="premier-thumbnail-media" src="photo_2026-05-21_23-15-23.jpg" alt="Прев'ю ПРЕМ'ЄРИ">
             <div class="premier-text">ПРЕМ'ЄРА</div>
-            <div class="premier-details">23 травня, 16:00 (за києвом)</div>
+            <div class="premier-details">23 травня о 16:00 за Києвом</div>
         </div>
     </div>
+
     <div class="studio-header" id="header" style="opacity: 0;">Logic UA Studio Presents</div>
 
     <div class="slide-deck">
         <div class="slide active" data-sub="Привіт усім! Ми раді розповісти вам про неймовірні новинки, які чекають на вас у грі.">
             <img class="slide-media" src="Img/Screenshot_20260518-122711.png" alt="Бравлери">
         </div>
-
         <div class="slide" data-sub="Головна новина: на момент релізу у грі буде доступно аж 23 унікальних бравлера!">
             <img class="slide-media" src="Img/Screenshot_20260518-122711.png" alt="23 бравлери">
         </div>
-
         <div class="slide" data-sub="Тепер поговоримо про щоденні нагороди. За кожну перемогу ви отримуватимете різні лутбокси!">
             <img class="slide-media" src="Img/Screenshot_20260518-112957.jpg" alt="Нагороди дня">
         </div>
-
         <div class="slide" data-sub="Ви зможете активно їх фармити, накопичувати та відкривати у будь-який зручний момент.">
             <img class="slide-media" src="Img/Screenshot_20260518-113009.png" alt="Фарм лутбоксів">
         </div>
-
         <div class="slide" data-sub="За денні перемоги ви можете отримати Маленький бокс — класичний старт для нагород.">
             <img class="slide-media" src="Img/Screenshot_20260518-120906.png" alt="Маленький бокс">
         </div>
-
         <div class="slide" data-sub="Також ви можете вибити Великий бокс — він містить утричі більше предметів!">
             <img class="slide-media" src="Img/Screenshot_20260518-120914.png" alt="Великий бокс">
         </div>
-
         <div class="slide" data-sub="Наступна нагорода — Мегабокс! Справжня класика та скарбниця для кожного гравця.">
             <img class="slide-media" src="Img/Screenshot_20260518-120922.png" alt="Мегабокс">
         </div>
-
         <div class="slide" data-sub="І звичайно ж Омегабокс — супер-ексклюзив із величезною кількістю цінних ресурсів!">
             <img class="slide-media" src="Img/Screenshot_20260518-120928.png" alt="Омегабокс">
         </div>
-
         <div class="slide" data-sub="Окрім цього, за перемоги ви будете відкривати круті пінпаки із новими значками.">
             <img class="slide-media" src="Img/Screenshot_20260518-120937.png" alt="Пінпак">
         </div>
-
         <div class="slide" data-sub="Збирайте цілі колекції унікальних пінів, щоб виражати свої емоції в матчах.">
             <img class="slide-media" src="Img/Screenshot_20260518-120954.png" alt="Колекції пінів">
         </div>
-
         <div class="slide" data-sub="Чудова новина для любителів бонусів! У грі з'являться офіційні робочі промокоди.">
             <img class="slide-media" src="Img/Screenshot_20260518-120717.jpg" alt="Промокоди">
         </div>
-
         <div class="slide" data-sub="Під час офіційного релізу кожен гравець гарантовано отримає скін Зоряна Шеллі безкоштовно!">
             <img class="slide-media" src="Img/starshelly.png" alt="Зоряна Шеллі">
         </div>
-
         <div class="slide" data-sub="Також на вас чекають спецпропозиції у магазині щодня та щотижня, та багато іншого.">
             <img class="slide-media" src="Img/1779096735289.png" alt="Магазин">
         </div>
-
         <div class="slide end-screen" data-sub="">
             <div class="end-screen-text">Дякуємо за перегляд!</div>
         </div>
-
         <div class="slide end-screen" data-sub="">
             <div class="end-screen-text">Побачимось у червні 👋</div>
         </div>
@@ -308,37 +293,27 @@
         }
     }
 
-    // Функція початку презентації
     function startVideo() {
-        // Ховаємо прев'ю
         thumbnailOverlay.classList.add('hidden');
-        
-        // Показуємо інтерфейс для першого слайду
         subContainer.style.opacity = '1';
         header.style.opacity = '1';
-
-        // Запускаємо перемикання слайдів
         intervalId = setInterval(nextSlide, slideDuration);
     }
 
-    // Встановлюємо дату релізу (23 травня 2026, 16:00 за Київським часом -> UTC+3)
+    // 23 травня 2026, 16:00 за Київським часом (UTC+3)
     const targetDate = new Date('2026-05-23T16:00:00+03:00').getTime();
 
-    // Функція перевірки часу
     function checkTime() {
         const now = new Date().getTime();
         const timeRemaining = targetDate - now;
 
         if (timeRemaining <= 0) {
-            // Якщо час уже настав - запускаємо відео одразу
             startVideo();
         } else {
-            // Якщо час ще не настав - чекаємо, поки таймер дійде до нуля
             setTimeout(startVideo, timeRemaining);
         }
     }
 
-    // Викликаємо перевірку при завантаженні сторінки
     checkTime();
 </script>
 
