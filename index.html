@@ -272,22 +272,27 @@
     const subContainer = document.getElementById('sub-container');
     const header = document.getElementById('header');
     const thumbnailOverlay = document.getElementById('thumbnail-overlay');
-    
+
     let currentIdx = 0;
-    const slideDuration = 5500; 
+    const slideDuration = 5500;
     let intervalId;
 
     function nextSlide() {
+        // знімаємо активність з поточного слайду
         slides[currentIdx].classList.remove('active');
+
+        // переходимо до наступного
         currentIdx++;
-        
+
+        // якщо це останній слайд, зупиняємо таймер
         if (currentIdx >= slides.length - 1) {
             clearInterval(intervalId);
-            currentIdx = slides.length - 1; 
+            currentIdx = slides.length - 1;
         }
 
+        // показуємо новий слайд
         slides[currentIdx].classList.add('active');
-        
+
         const text = slides[currentIdx].getAttribute('data-sub');
         if (text) {
             subBox.innerText = text;
