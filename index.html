@@ -37,15 +37,15 @@
             overflow: hidden;
         }
 
-        /* --- ФІКС: Напівпрозорий фон з розмиттям --- */
+        /* --- ФІКС: Повернуто світлий фон --- */
         .thumbnail-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.75); /* Напівпрозорий чорний замість глухого */
-            backdrop-filter: blur(8px); /* Ефект розмиття заднього фону */
+            background-color: rgba(0, 0, 0, 0.2); /* Майже прозорий, щоб було видно світлий фон */
+            backdrop-filter: blur(10px); /* Легке розмиття */
             z-index: 100;
             transition: opacity 1s ease-out;
             display: flex;
@@ -69,18 +69,18 @@
         }
 
         .premier-thumbnail-media {
-            max-width: 55%; /* Компактний розмір картинки */
+            max-width: 55%; 
             max-height: 45vh;
             object-fit: contain;
             border: 6px solid #ffcc00;
             border-radius: 15px;
-            box-shadow: 0 0 50px rgba(255, 204, 0, 0.5); /* Широке жовте світіння */
+            box-shadow: 0 0 50px rgba(255, 204, 0, 0.5); 
             margin-bottom: 20px;
         }
 
         .premier-text {
             color: #ffcc00;
-            font-size: 85px; /* Гігантський текст */
+            font-size: 85px; 
             font-family: 'Arial Black', sans-serif;
             text-transform: uppercase;
             text-shadow: 0 8px 15px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 204, 0, 0.4);
