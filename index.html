@@ -44,8 +44,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.2); /* Майже прозорий, щоб було видно світлий фон */
-            backdrop-filter: blur(10px); /* Легке розмиття */
+            background-image: url('photo_2026-05-21_23-15-23.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgba(0, 0, 0, 0.35);
+            background-blend-mode: darken;
+            backdrop-filter: blur(2px);
             z-index: 9999;
             opacity: 1;
             transition: opacity 1s ease-out;
@@ -201,7 +206,6 @@
     
     <div class="thumbnail-overlay" id="thumbnail-overlay">
         <div class="thumbnail-content">
-            <img class="premier-thumbnail-media" src="photo_2026-05-21_23-15-23.jpg" alt="Прев'ю ПРЕМ'ЄРИ">
             <div class="premier-text">ПРЕМ'ЄРА</div>
             <div class="premier-details">23 травня о 16:00 за Києвом</div>
         </div>
