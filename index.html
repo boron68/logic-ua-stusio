@@ -48,7 +48,7 @@
             backdrop-filter: blur(10px); /* Легке розмиття */
             z-index: 100;
             transition: opacity 1s ease-out;
-            display:flex;
+            display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
@@ -258,6 +258,16 @@
     <div class="subtitles-container" id="sub-container" style="opacity: 0;">
         <div class="subtitle-text" id="sub-box">Привіт усім! Ми раді розповісти вам про неймовірні новинки, які чекають на вас у грі.</div>
     </div>
+
+    <script>
+        const overlay = document.getElementById('thumbnail-overlay');
+        const deadline = new Date('2026-05-23T16:00:00');
+        if (new Date() > deadline) {
+            overlay.classList.add('hidden');
+        } else {
+            overlay.classList.remove('hidden');
+        }
+    </script>
 </div>
 
 <script>
